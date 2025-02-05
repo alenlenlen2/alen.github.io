@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi San Valentín?</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffccd5;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 10px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 1.8em;
+        }
+
+        p {
+            color: #555;
+            font-size: 1.2em;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .buttons button {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 120px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .buttons button:hover {
+            background: #c9184a;
+        }
+
+        #noBtn {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="mainCard">
+        <h1 id="title">¿Quieres ser mi San Valentín? ❤️</h1>
+        <p id="message"></p>
+        <div class="buttons" id="buttons">
+            <button id="yesBtn">Aceptar</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        const noBtn = document.getElementById("noBtn");
+        const messages = ["¿Estás segura?", "¿En serio?", "¿Pero por qué?"];
+
+        noBtn.addEventListener("click", function() {
+            if (clickCount < messages.length) {
+                noBtn.innerText = messages[clickCount];
+                clickCount++;
+            } else {
+                // Mueve el botón aleatoriamente en la pantalla (soporta móviles)
+                const maxX = window.innerWidth - noBtn.clientWidth - 20;
+                const maxY = window.innerHeight - noBtn.clientHeight - 20;
+                const randomX = Math.floor(Math.random() * maxX);
+                const randomY = Math.floor(Math.random() * maxY);
+                
+                noBtn.style.position = "absolute";
+                noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            }
+        });
+
+        document.getElementById("yesBtn").addEventListener("click", function() {
+            document.getElementById("title").innerText = "¡Feliz San Valentín!";
+            document.getElementById("message").innerText = "Gracias por aceptar mi amor! Eres la persona más especial para mí, y no puedo esperar para celebrar este día contigo. Te quiero mucho mucho ❤️";
+            document.getElementById("buttons").style.display = "none";
+        });
+    </script>
+</body>
+</html>
